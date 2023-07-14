@@ -35,7 +35,7 @@ $router->get('/suppliers', 'SupplierController@index');
 $router->get('/suppliers/{supplierId}', 'SupplierController@show');
 $router->post('/suppliers', 'SupplierController@store');
 $router->put('/suppliers/{supplierId}', 'SupplierController@update');
-$router->delete('/suppliers/{supplierId}', 'SupplierController@destory');
+$router->delete('/suppliers/{supplierId}', 'SupplierController@destroy');
 
 $router->get('/purchases', 'PurchaseController@index');
 $router->get('/purchases/{purchaseId}', 'PurchaseController@show');

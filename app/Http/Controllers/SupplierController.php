@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -32,7 +32,7 @@ class SupplierController extends Controller
         return response()->json($response, 200);
     }
 
-    public function show(Supplier $supplierId)
+    public function show($supplierId)
     {
         $supplier = Supplier::find($supplierId);
 
@@ -62,7 +62,7 @@ class SupplierController extends Controller
         return response()->json($response, 200);
     }
 
-    public function update(Request $request, Supplier $supplierId)
+    public function update(Request $request, $supplierId)
     {
         if (Supplier::find($supplierId) === null) {
             $response['message'] = 'supplier is not found';
@@ -77,7 +77,7 @@ class SupplierController extends Controller
         return response()->json($response, 200);
     }
 
-    public function destroy(Supplier $supplierId)
+    public function destroy($supplierId)
     {
         if (Supplier::find($supplierId) === null) {
             $response['message'] = 'supplier is not found';

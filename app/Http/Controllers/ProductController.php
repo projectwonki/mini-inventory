@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -33,7 +33,7 @@ class ProductController extends Controller
         return response()->json($response, 200);
     }
 
-    public function show(Product $productId)
+    public function show($productId)
     {
         $product = Product::find($productId);
 
@@ -65,7 +65,7 @@ class ProductController extends Controller
         return response()->json($response, 200);
     }
 
-    public function update(Request $request, Product $productId)
+    public function update(Request $request, $productId)
     {
         if (Product::find($productId) === null) {
             $response['message'] = 'product is not found';
@@ -81,7 +81,7 @@ class ProductController extends Controller
         return response()->json($response, 200);
     }
 
-    public function destroy(Product $productId)
+    public function destroy($productId)
     {
         if (Product::find($productId) === null) {
             $response['message'] = 'products is not found';

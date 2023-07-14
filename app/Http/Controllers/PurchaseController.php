@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Purchase;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
@@ -43,7 +43,7 @@ class PurchaseController extends Controller
         return response()->json($response, 200);
     }
 
-    public function show(Purchase $purchaseId)
+    public function show($purchaseId)
     {
         $purchase = Purchase::find($purchaseId);
 
@@ -82,13 +82,13 @@ class PurchaseController extends Controller
             'supplier_id' => $request->input('supplier_id')
         ]);
 
-        Product::whereId($request->input('product_id'))->decrement('qty', $request->input('qty'));
+        Product::whereId($request->input('product_id'))->increment('qty', $request->input('qty'));
 
         $response['message'] = 'success create purchase';
         return response()->json($response, 200);
     }
 
-    public function update(Request $request, Purchase $purchaseId)
+    public function update(Request $request, $purchaseId)
     {
         if (Purchase::find($purchaseId) === null) {
             $response['message'] = 'purchase is not found';
@@ -106,7 +106,7 @@ class PurchaseController extends Controller
         return response()->json($response, 200);
     }
 
-    public function destroy(Purchase $purchaseId)
+    public function destroy($purchaseId)
     {
         if (Purchase::find($purchaseId) === null) {
             $response['message'] = 'purchase is not found';
