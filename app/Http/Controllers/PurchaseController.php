@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Purchase;
 use Illuminate\Http\Client\Request;
 
@@ -80,6 +81,8 @@ class PurchaseController extends Controller
             'product_id' => $request->input('product_id'),
             'supplier_id' => $request->input('supplier_id')
         ]);
+
+        Product::whereId($request->input('product_id'))->decrement('qty', $request->input('qty'));
 
         $response['message'] = 'success create purchase';
         return response()->json($response, 200);
